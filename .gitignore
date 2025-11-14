@@ -1,0 +1,8 @@
+
+# ESP-IDF build specific files
+build/
+sdkconfig.old
+
+# pycache files
+__pycache__/
+*.pyc
