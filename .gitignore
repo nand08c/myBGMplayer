@@ -6,3 +6,5 @@ sdkconfig.old
 # pycache files
 __pycache__/
 *.pyc
+.cache/clangd/index
+build.clang
