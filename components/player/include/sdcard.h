@@ -8,12 +8,12 @@
 
 /**
  * Setup the sdcard using the sdmmc driver under the predefined pins:
- * CMD:
- * CLK:
- * D0:
- * D1:
- * D2:
- * D3:
+ * CMD: 21
+ * CLK: 22
+ * D0: 23
+ * D1: Not Used
+ * D2: Not Used
+ * D3: Not Used
  */
 esp_err_t sdcard_init(void);
 
