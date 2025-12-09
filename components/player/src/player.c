@@ -224,3 +224,31 @@ esp_err_t mplayer_resume(void) {
   ESP_LOGI(TAG, "Resumed");
   return ESP_OK;
 }
+
+esp_err_t mplayer_stop(void) {
+  ESP_LOGI(TAG, "Stopping Player...");
+
+  // 1. Stop the timer (ISR)
+  if (timer_handle) {
+    gptimer_stop(timer_handle);
+    gptimer_set_raw_count(timer_handle, 0);
+  }
+
+  // 2. Stop the logical playback
+  is_playing = false;
+  is_paused = false;
+
+  // 3. Close file
+  if (current_file) {
+    fclose(current_file);
+    current_file = NULL;
+  }
+
+  // 4. Clear Buffer
+  memset(audio_buffer, 0, BUFFER_SIZE);
+  buf_head = 0;
+  buf_tail = 0;
+
+  ESP_LOGI(TAG, "Player Stopped");
+  return ESP_OK;
+}

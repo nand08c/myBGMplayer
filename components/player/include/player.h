@@ -31,4 +31,10 @@ esp_err_t mplayer_play(char *filepath);
 esp_err_t mplayer_pause(void);
 esp_err_t mplayer_resume(void);
 
+/**
+ * Stop the current playing song, stops the ISR and the filler task,
+ * also clears the buffer for safety
+ */
+esp_err_t mplayer_stop(void);
+
 #endif /* __PLAYER_H__ */
