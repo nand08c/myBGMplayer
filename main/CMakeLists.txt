@@ -1,2 +1,2 @@
-idf_component_register(SRCS "myBGMplayer.c"
-                    INCLUDE_DIRS ".")
+idf_component_register(SRCS "myBGMplayer.c" "io.c"
+                    INCLUDE_DIRS "./include/")
