@@ -37,4 +37,9 @@ esp_err_t mplayer_resume(void);
  */
 esp_err_t mplayer_stop(void);
 
+/**
+ * Check if the current song has finished playing
+ */
+bool mplayer_has_finished(void);
+
 #endif /* __PLAYER_H__ */

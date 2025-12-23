@@ -30,6 +30,7 @@ static volatile size_t buf_head = 0; // Write index
 static volatile size_t buf_tail = 0; // Read index
 static volatile bool is_playing = false;
 static volatile bool is_paused = false;
+static volatile bool song_finished = false;
 
 // Notification for the task
 static SemaphoreHandle_t play_sem = NULL;
@@ -117,6 +118,7 @@ static void player_task(void *arg) {
             }
 
             is_playing = false;
+            song_finished = true;
             fclose(current_file);
             current_file = NULL;
             gptimer_stop(timer_handle);
@@ -199,6 +201,7 @@ esp_err_t mplayer_play(char *filepath) {
   buf_tail = 0;
   is_paused = false;
   is_playing = true;
+  song_finished = false;
 
   // Start Timer
   ESP_ERROR_CHECK(gptimer_start(timer_handle));
@@ -252,3 +255,5 @@ esp_err_t mplayer_stop(void) {
   ESP_LOGI(TAG, "Player Stopped");
   return ESP_OK;
 }
+
+bool mplayer_has_finished(void) { return song_finished; }
